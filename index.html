@@ -8,12 +8,16 @@
     <title>ChromeExtension</title>
 </head>
 <body>
-    <div id="sign-in-form">
-        <div class="form"></div>
-        <!-- required -->
-        <input required type="text" placeholder="NAME HERE." />
+    <form id="signin-form">
+        <input 
+            required 
+            maxlength="15" 
+            type="text" 
+            placeholder="NAME HERE." 
+        />
         <button>Sign In</button> 
-    </div>
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
     <script src="app.js"></script>
 </body>
 </html>
