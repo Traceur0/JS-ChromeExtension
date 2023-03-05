@@ -11,19 +11,24 @@ function onSigninBtnClick(event) {
     signinForm.classList.add(HIDDEN);
     const username = signinInput.value;
     localStorage.setItem('username', username);   
-    greeting.innerText = `Hello ${username}`;
-    greeting.classList.remove(HIDDEN);
+    paintGreeting()
 }
 
-signinForm.addEventListener("submit", onSigninBtnClick);
+function paintGreeting() {
+    username = localStorage.getItem(USERNAME);
+    greeting.innerText = `Hello ${username}`;
+    signinForm.classList.remove(HIDDEN);
+}
 
 
 // if reload page
 const savedUsername = localStorage.getItem(USERNAME);
 
 if (savedUsername === null) {
-    onSigninBtnClick();
+    // show eventListener
+    signinForm.classList.remove(HIDDEN);
+    signinForm.addEventListener("submit", onSigninBtnClick);
 } else {
-    signinForm.classList.add(HIDDEN);
-    onSigninBtnClick();
+    // show greeting
+    paintGreeting()
 }
