@@ -1,13 +1,13 @@
 const clock = document.querySelector("h2#clock")
 
-clock.innerText = ""
-
 
 function time() {
-  var hr = Date().getHours();
-  var min = Date().getMinutes();
-  var sec = Date().getSeconds();
-  console.log(`${hr}:${min}:${sec}`);
+  const date = new Date();
+  const hr = String(date.getHours()).padStart(2, "0");
+  const min = String(date.getMinutes()).padStart(2, "0");
+  const sec = String(date.getSeconds()).padStart(2, "0");
+  clock.innerText = `${hr}:${min}:${sec}`;
 }
 
-setInterval(time(), 1000);
+time();
+setInterval(time, 1000);
