@@ -1,4 +1,4 @@
-const endDic = [
+const engDic = [
   {
     word: "ambient",
     meaning1: "[형용사] 1. 주위의, 둘러싸듯이 있는",
@@ -40,11 +40,34 @@ const endDic = [
     word: "entertain",
     meaning1: "[타동사] 즐겁게[재미있게]하다, 위로하다",
     meaning2: "[타동사] (음식물을 내놓고) 대접[환대]하다, 맞이하다",
-    meaning3: "[타동사] 고려하다, (받아들여) 생각해 보다, (마음속에) 품다"
+    meaning3: "[타동사] 고려하다, (받아들여) 생각해 보다, (마음속에) 품다",
   },
   {
     word: "endow",
-    meaning1: "기부하다",
-    meaning2: "부여하다, (자질 등이) 있다고 생각하다",
+    meaning1: "[동사] 기부하다",
+    meaning2: "[동사] 부여하다, (자질 등이) 있다고 생각하다",
   },
-]
+];
+
+
+const engVoca = document.querySelector("#engVoca")
+const wordSpan = engVoca.querySelector("span:nth-child(1)");
+const meaning1Span = engVoca.querySelector("span:nth-child(2)");
+
+
+const engDicSel = engDic[Math.floor(Math.random() * engDic.length)];
+
+wordSpan.innerText = engDicSel.word;
+meaning1Span.innerText = engDicSel.meaning1;
+
+const meaningCount = Object.keys(engDicSel).length - 1;
+
+if (meaningCount === 2) {
+  const meaning2Span = engVoca.querySelector("span:nth-child(3)");
+  meaning2Span.innerText = engDicSel.meaning2;
+} else if (meaningCount === 3) {
+  const meaning2Span = engVoca.querySelector("span:nth-child(3)");
+  const meaning3Span = engVoca.querySelector("span:nth-child(4)");
+  meaning2Span.innerText = engDicSel.meaning2;
+  meaning3Span.innerText = engDicSel.meaning3;
+}
