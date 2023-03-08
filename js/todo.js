@@ -7,7 +7,21 @@ const todoList = document.querySelector("#todo-list");
 function onDelBtnClick(event) {
     const li = event.target.parentElement;
     li.remove();
-    console.dir(todoList)
+}
+
+function onCheckBtnClick(event) {
+    /*
+        체크 버튼을 누르면 span의 글자에 취소선을 긋는 함수
+        버튼과 span은 같은 부모를 가지고 같은 계층에 위치해 있다
+    */
+    console.log(event.target.parentElement)
+    console.log(event.target.parentElement.firstElementChild)
+
+    const span = event.value.parentElement.firstElementChild;
+    // TypeError: Cannot read properties of undefined
+    span.style.textDecorationLine = "line-through";
+    console.log(span)
+    
 }
 
 function createTodo(newTodo) {
@@ -18,12 +32,12 @@ function createTodo(newTodo) {
     span.innerText = newTodo;
     checkBtn.innerText = "✔";
     delBtn.innerText = "✖";
-    checkBtn.addEventListener("click", onCheckBtnClick);
-    delBtn.addEventListener("click", onDelBtnClick);
     li.appendChild(span);
     li.appendChild(checkBtn);
     li.appendChild(delBtn);
     todoList.appendChild(li);
+    checkBtn.addEventListener("click", onCheckBtnClick);
+    delBtn.addEventListener("click", onDelBtnClick);
 }
 
 function handleTodoSubmit(event) {
@@ -33,15 +47,6 @@ function handleTodoSubmit(event) {
     createTodo(newTodo);
 }
 
-function onCheckBtnClick(event) {
-    /*
-        체크 버튼을 누르면 span의 글자에 취소선을 긋는 함수
-        버튼과 span은 같은 부모를 가지고 같은 계층에 위치해 있다
-    */
-    const span = event.value.getAttribute('span');
-    // span.style.textDecorationLine = "line-through";
-    console.log(span)
-}
 
 
 todoForm.addEventListener("submit", handleTodoSubmit);
