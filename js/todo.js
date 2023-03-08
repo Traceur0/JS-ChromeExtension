@@ -14,28 +14,28 @@ function onCheckBtnClick(event) {
         체크 버튼을 누르면 span의 글자에 취소선을 긋는 함수
         버튼과 span은 같은 부모를 가지고 같은 계층에 위치해 있다
     */
-    console.log(event.target.parentElement)
-    console.log(event.target.parentElement.firstElementChild)
-
-    const span = event.value.parentElement.firstElementChild;
+    const span = event.target.parentElement.firstElementChild;
     // TypeError: Cannot read properties of undefined
     span.style.textDecorationLine = "line-through";
-    console.log(span)
-    
 }
 
 function createTodo(newTodo) {
+    // HTML 요소 생성
     const li = document.createElement("li");
     const span = document.createElement("span");
-    const checkBtn = document.createElement("button");
-    const delBtn = document.createElement("button");
     span.innerText = newTodo;
+    const checkBtn = document.createElement("button");
     checkBtn.innerText = "✔";
+    const delBtn = document.createElement("button");
     delBtn.innerText = "✖";
+
+    // 배치
+    todoList.appendChild(li);
     li.appendChild(span);
     li.appendChild(checkBtn);
     li.appendChild(delBtn);
-    todoList.appendChild(li);
+
+    // 버튼 상호작용 동작 이벤트리스너
     checkBtn.addEventListener("click", onCheckBtnClick);
     delBtn.addEventListener("click", onDelBtnClick);
 }
@@ -46,7 +46,5 @@ function handleTodoSubmit(event) {
     todoInput.value = "";
     createTodo(newTodo);
 }
-
-
 
 todoForm.addEventListener("submit", handleTodoSubmit);
