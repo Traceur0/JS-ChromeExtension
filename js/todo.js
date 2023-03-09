@@ -2,9 +2,15 @@ const todoForm = document.querySelector("#todo-form");
 const todoInput = todoForm.querySelector("input");
 const todoList = document.querySelector("#todo-list");
 
+const TODO_KEY = "TODO"
+
 const todoContainer = [];
 
 
+
+function saveTodo() {
+    localStorage.setItem(TODO_KEY, todoContainer);
+}
 
 function onDelBtnClick(event) {
     const li = event.target.parentElement;
@@ -12,13 +18,17 @@ function onDelBtnClick(event) {
 }
 
 function onCheckBtnClick(event) {
-    /*
-        체크 버튼을 누르면 span의 글자에 취소선을 긋는 함수
-        버튼과 span은 같은 부모를 가지고 같은 계층에 위치해 있다
-    */
     const span = event.target.parentElement.firstElementChild;
     // TypeError: Cannot read properties of undefined
-    span.style.textDecorationLine = "line-through";
+    var cancelLine = span.style.textDecorationLine
+    // .... 
+    if (cancelLine !== "line-through") {
+        console.log(cancelLine)
+        cancelLine = "none";
+    } else if (cancelLine === "line-through") {
+        console.log(cancelLine)
+        cancelLine = "line-through";
+    }
 }
 
 function createTodo(newTodo) {
@@ -51,3 +61,10 @@ function handleTodoSubmit(event) {
 }
 
 todoForm.addEventListener("submit", handleTodoSubmit);
+
+
+const savedTodo = localStorage.getItem(TODO_KEY);
+
+if (savedTodo) {
+
+}
